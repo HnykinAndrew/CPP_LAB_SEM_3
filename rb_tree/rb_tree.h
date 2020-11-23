@@ -44,14 +44,14 @@ private:
 public:
     RB_tree();
     ~RB_tree();
-    void clear();			                           /** отчистить дерево */
-    bool find(int);			                           /** найти значение */
-    void insert(int);		                           /** вставить значение */
-    void erase(int);		                           /** удалить значение */
+    void clear();                                      /** отчистить дерево */
+    bool find(int);                                    /** найти значение */
+    void insert(int);                                  /** вставить значение */
+    void erase(int);                                   /** удалить значение */
     void show();                                       /** изобразить всё дерево */
     std::vector<int> get_sort_vector();                /** возвращает вектор элементов по возрастанию */
     void insert_vector(std::vector<int>);              /** вводит элементы вектора в кч-дерево */
-    int size() const;	                               /** узнать число узлов дерева */
+    int size() const;                                  /** узнать число узлов дерева */
     node_st* get_tree_root();                          /** возвращает указатель на корень дерева */
 };
 
