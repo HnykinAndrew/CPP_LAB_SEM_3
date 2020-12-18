@@ -314,6 +314,8 @@ void RB_tree::BalanceErase(node_st *node)
 {
     if (node->parent != nullptr) {
         node_st *s = GetSibling(node);
+        if (s == nullptr)
+            return;
         if (s->color_red) {
             node->parent->color_red = true;
             s->color_red = false;
@@ -323,6 +325,8 @@ void RB_tree::BalanceErase(node_st *node)
                 RotateRight(node->parent);
         }
         s = GetSibling(node);
+        if (s == nullptr || s->leftBranch == nullptr || s->rightBranch == nullptr)
+            return;
         if (!node->parent->color_red &&
             !s->color_red &&
             !s->leftBranch->color_red &&
@@ -331,6 +335,8 @@ void RB_tree::BalanceErase(node_st *node)
             BalanceErase(node->parent);
         } else {
             s = GetSibling(node);
+            if (s == nullptr || s->leftBranch == nullptr || s->rightBranch == nullptr)
+                return;
             if (node->parent->color_red &&
                 !s->color_red &&
                 !s->leftBranch->color_red &&
@@ -339,6 +345,8 @@ void RB_tree::BalanceErase(node_st *node)
                 node->parent->color_red = false;
             } else {
                 s = GetSibling(node);
+                if (s == nullptr || s->leftBranch == nullptr || s->rightBranch == nullptr)
+                    return;
                 if  (!s->color_red) {
                     if ((node == node->parent->leftBranch) &&
                         !s->rightBranch->color_red &&
@@ -355,6 +363,8 @@ void RB_tree::BalanceErase(node_st *node)
                     }
                 }
                 s = GetSibling(node);
+                if (s == nullptr || s->leftBranch == nullptr || s->rightBranch == nullptr)
+                    return;
                 s->color_red = node->parent->color_red;
                 node->parent->color_red = false;
                 if (node == node->parent->leftBranch) {
@@ -366,7 +376,6 @@ void RB_tree::BalanceErase(node_st *node)
                 }
             }
         }
-
     }
 }
 
